@@ -10,7 +10,7 @@ app.use(bodyParser.json({
 
 // environment variables
 const PORT = process.env.PORT || 4000;
-const HOST = process.env.HOST || '0.0.0.0';
+const HOST = process.env.HOST || '192.168.99.101';
 
 // mysql credentials
 const connection = mysql.createConnection({

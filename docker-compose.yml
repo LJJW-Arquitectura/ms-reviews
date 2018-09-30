@@ -1,28 +1,10 @@
-version: "2.1"
+version: "1"
 services:
-  courses-ms:
-    build: .
-    ports:
-      - "3000:3000"
-    depends_on:
-      courses-db:
-        condition: service_healthy
-    healthcheck:
-      test: "curl -I courses-ms:3000/courses-ms/resources/courses/ --fail"
-      interval: 20s
-      retries: 10
+  reviews-ms:
+    build: "./nodejs-microservice"
+ #docker run  -d --publish 4000:4000 -e MYSQL_USER='root' 
+#-e MYSQL_PASSWORD='password' -e MYSQL_DATABASE='test' -e MYSQL_HOST='172.17.0.4' 
+#--link test-mysql-microservice:db --name=test-nodejs-microservice test-nodejs
 
-  reviews_db:
-    image: mysql:5.7
-    healthcheck:
-      test: "mysqlcheck -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE"
-      interval: 20s
-      timeout: 5s
-      retries: 15
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: test
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
+  reviews-db:
+    build: "./mysql-microservice"
