@@ -1,0 +1,419 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice for Reviews and Suggestions
+  description: JavaScript + MySQL
+  license:
+    name: Software Architecture 2018-II
+host: 192.168.99.101:3003 
+#basePath: 
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /get-reviews:
+    get:
+      summary: Returns all reviews
+      operationId: getAllReviews
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/getAllReviews'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+            
+  /get-reviews/{code}:  
+    get:
+      summary: Returns a review with the given code
+      operationId: getReviewByCode
+      parameters:
+        - name: code
+          in: path
+          description: The code of the review to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Review'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /get-suggestions:
+    get:
+      summary: Returns all suggestions
+      operationId: getAllSuggestions
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/getAllSuggestions'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+            
+  /get-suggestions/{code}:  
+    get:
+      summary: Returns a suggestion with the given code
+      operationId: getSuggestionByCode
+      parameters:
+        - name: code
+          in: path
+          description: The code of the suggestion to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Suggestion'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'  
+  
+  /get-average/{code}:  
+    get:
+      summary: Returns the average grade value of the book with the given code
+      operationId: getAverageValue
+      parameters:
+        - name: code
+          in: path
+          description: The code of the book to be used
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/AvgGrade'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+            
+  /add-review/:
+    post:
+      summary: Creates a new review
+      operationId: addReview
+      parameters:
+        - name: review
+          in: body
+          required: true
+          description: Review Object
+          schema:
+            $ref: '#/definitions/addReview'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+            
+  /add-suggestion/:
+    post:
+      summary: Creates a new Suggestion
+      operationId: addSuggestion
+      parameters:
+        - name: suggestion
+          in: body
+          required: true
+          description: Suggestion Object
+          schema:
+            $ref: '#/definitions/addSuggestion'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  
+  /update-review/:
+    put:
+      summary: Completely updates a existent review
+      operationId: updateReview
+      parameters:
+        - name: review
+          in: body
+          required: true
+          description: Review Object
+          schema:
+            $ref: '#/definitions/updateReview'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+            
+  /update-suggestion/:
+    put:
+      summary: Completely updates a existent suggestion
+      operationId: updateSuggestion
+      parameters:
+        - name: suggestion
+          in: body
+          required: true
+          description: Suggestion Object
+          schema:
+            $ref: '#/definitions/Suggestion'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /delete-review/:
+    delete:
+      summary: Deletes a review with the given code
+      operationId: deleteReview
+      parameters:
+        - name: review_id
+          in: body
+          description: The id of the review to be deleted
+          required: true
+          schema:
+            $ref: '#/definitions/deleteReview'
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+            
+  /delete-suggestion/:
+    delete:
+      summary: Deletes a suggestion with the given code
+      operationId: deleteSuggestion
+      parameters:
+        - name: suggestion_id
+          in: body
+          description: The id of the suggestion to be deleted
+          required: true
+          schema:
+            $ref: '#/definitions/deleteSuggestion'
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+definitions:
+
+  Review:
+    type: object
+    properties:
+      review_id:
+        type: integer
+      book_id:
+        type: integer
+      user_id:
+        type: integer
+      creationdate:
+        type: string
+        format: date-time 
+      review:
+        type: string
+      grade:
+        type: integer
+        minimum: 1
+        maximum: 5
+        
+  Suggestion:
+    type: object
+    properties:
+      sugggestion_id:
+        type: integer
+      book_id1:
+        type: integer
+      book_id2:
+        type: integer
+        
+  AvgGrade:
+    type: object
+    properties:
+      Avg(grade):
+        type: number
+        
+  getAllReviews:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Review'
+  
+  getAllSuggestions:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Suggestion'
+
+  addReview:
+    type: object
+    properties:
+      book_id:
+        type: integer
+      user_id:
+        type: integer
+      review:
+        type: string
+      grade:
+        type: integer
+        minimum: 1
+        maximum: 5
+
+  addSuggestion:
+    type: object
+    properties:
+      book_id1:
+        type: integer
+      book_id2:
+        type: integer
+
+  updateReview:
+    type: object
+    properties:
+      review_id:
+        type: integer
+      book_id:
+        type: integer
+      user_id:
+        type: integer
+      review:
+        type: string
+      grade:
+        type: integer
+        minimum: 1
+        maximum: 5 
+        
+  deleteReview:
+    type: object
+    properties:
+      review_id:
+        type: integer
+  
+  deleteSuggestion:
+    type: object
+    properties:
+      sugggestion_id:
+        type: integer
+
+        
+# Errors
+  ErrorModel:
+    type: object
+    required:
+      - message
+      - code
+    properties:
+      message:
+        type: string
+      code:
+        type: number
+      description:
+        type: object
