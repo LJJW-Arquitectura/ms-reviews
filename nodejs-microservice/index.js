@@ -14,7 +14,8 @@ const HOST = process.env.HOST || '0.0.0.0';
 require('./routes')(app);
 
 const connection = mysql.createConnection({
-	host: '172.17.0.3',
+	//host: '172.17.0.3',
+	host: "192.168.99.101",
 	user: 'root',
 	password: 'reviewPassword',
 	database: 'review_suggestions'

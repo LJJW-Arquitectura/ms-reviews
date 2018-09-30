@@ -1,14 +1,29 @@
 version: "2.1"
 services:
   reviews-ms:
-    build: "./nodejs-microservice"
-    command: npm start
+    build:
+      context: ./nodejs-microservice  
+      dockerfile: Dockerfile
     depends_on: 
-     - reviews-db
+      reviews-db:
+        condition: service_healthy
     ports:
       - "3003:3003"
       
   reviews-db:
-    build: "./mysql-microservice"
+    build: 
+      context: ./mysql-microservice
+      dockerfile: Dockerfile
+    image: mysql:5.7
+    healthcheck:
+      test: "mysqlcheck -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE"
+      interval: 20s
+      timeout: 5s
+      retries: 15
+    environment:
+      MYSQL_ROOT_PASSWORD: reviewPassword
+      MYSQL_DATABASE: review_suggestions
+      MYSQL_USER: root
+      MYSQL_PASSWORD: reviewPassword
     ports:
-      - "3310:3310"
+      - "4003:3306"
