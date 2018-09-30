@@ -1,7 +1,4 @@
--- Host: localhost    Database: test
---
--- Table structure for table `students`
---
+-- scripts database
 
 DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE `reviews` (
@@ -19,17 +16,3 @@ CREATE TABLE `suggestions` (
   `book_id1` INT NOT NULL,
   `book_id2` INT NOT NULL,
   PRIMARY KEY (`id_suggestion`));
-
-/*
-DROP TABLE IF EXISTS `students`;
-CREATE TABLE `students` (
-  `rollNo` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`rollNo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-LOCK TABLES `students` WRITE;
-INSERT INTO `students` VALUES (1130328,'Varun Kumar');
-UNLOCK TABLES;
-*/
