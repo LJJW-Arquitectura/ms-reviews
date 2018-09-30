@@ -16,14 +16,14 @@ services:
       dockerfile: Dockerfile
     image: mysql:5.7
     healthcheck:
-      test: "mysqlcheck -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE"
+      test: "mysqlcheck --user=root -p$$MYSQL_ROOT_PASSWORD $$MYSQL_DATABASE"
       interval: 20s
       timeout: 5s
       retries: 15
     environment:
       MYSQL_ROOT_PASSWORD: reviewPassword
       MYSQL_DATABASE: review_suggestions
-      MYSQL_USER: root
-      MYSQL_PASSWORD: reviewPassword
+      #MYSQL_USER: root
+      #MYSQL_PASSWORD: reviewPassword
     ports:
-      - "4003:3306"
+      - "6603:3306"

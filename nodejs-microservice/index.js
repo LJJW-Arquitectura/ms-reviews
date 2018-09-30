@@ -14,12 +14,22 @@ const HOST = process.env.HOST || '0.0.0.0';
 require('./routes')(app);
 
 const connection = mysql.createConnection({
-	//host: '172.17.0.3',
-	host: "192.168.99.101",
+	//host: process.env.MYSQL_HOST || '172.17.0.3',
+	//host: process.env.MYSQL_HOST || '192.168.99.101',
+	host: process.env.MYSQL_HOST || '172.19.0.2',
+	user: process.env.MYSQL_USER || 'root',
+	password: process.env.MYSQL_PASSWORD || 'reviewPassword',
+	database: process.env.MYSQL_DATABASE || 'review_suggestions'
+});
+
+/*const connection = mysql.createConnection({
+    //host: '172.17.0.3',
+    host: '172.19.0.2', //IP en la que queda sql al correr dockercompose
+	//host: "192.168.99.101",,
 	user: 'root',
 	password: 'reviewPassword',
 	database: 'review_suggestions'
-});
+});*/
 
 connection.connect((err) => {
 	if (err) {

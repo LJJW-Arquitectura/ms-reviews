@@ -16,3 +16,9 @@ CMD ["npm", "start"]
 #sudo docker run  -d --publish 4000:4000 -e MYSQL_USER='root' -e MYSQL_PASSWORD='password' -e MYSQL_DATABASE='test' -e MYSQL_HOST='172.17.0.4' --link test-mysql-microservice:db --name=test-nodejs-microservice test-nodejs
 #sudo docker run  -d --publish 4000:4000 -e MYSQL_USER='root' -e MYSQL_PASSWORD='reviewPassword' -e MYSQL_DATABASE='review_suggestions' -e MYSQL_HOST='172.17.0.4' --link test-mysql-microservice:db --name=test-nodejs-microservice test-nodejs
 #sudo docker run  -p 3003:3003 --link test-mysql-microservice:db --name=test-nodejs-microservice test-nodejs
+
+#BORRAR DOCKER COMPOSE
+#sudo docker-compose rm -v
+
+#SABER EN QUE PUERTO CORRE LA DB
+#sudo docker inspect pruebaexpress_reviews-db_1 | grep IPAddress
