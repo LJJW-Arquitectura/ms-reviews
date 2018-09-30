@@ -1,31 +1,24 @@
-
 const app = require('express')();
+const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
-const bodyParser = require('body-parser');
-
 app.use(bodyParser.json({
-    limit: '8mb'
+	limit: '8mb'
 })); // support json encoded bodies
 
 // environment variables
-const PORT = process.env.PORT || 4000;
-const HOST = process.env.HOST || '192.168.99.101';
+const PORT = process.env.PORT || 3003;
+const HOST = process.env.HOST || '0.0.0.0';
 
-// mysql credentials
+
+require('./routes')(app);
+
 const connection = mysql.createConnection({
-	host: process.env.MYSQL_HOST || '172.17.0.2',
-	user: process.env.MYSQL_USER || 'root',
-	password: process.env.MYSQL_PASSWORD || 'password',
-	database: process.env.MYSQL_DATABASE || 'test'
+	host: '172.17.0.3',
+	user: 'root',
+	password: 'reviewPassword',
+	database: 'review_suggestions'
 });
-
-/*const connection = MySQL.createConnection({
-    host: '172.17.0.4',
-    user: 'root', 
-    password: 'password',
-    database: 'test'
-});*/
 
 connection.connect((err) => {
 	if (err) {
@@ -41,52 +34,3 @@ connection.connect((err) => {
 		});
 	}
 });
-
-// home page
-app.get('/', (req, res) => {
-	res.json({
-		success: true,
-		message: 'Hello world'
-	});
-});
-
-// insert a student into database
-app.post('/add-student', (req, res) => {
-	const student = req.body;
-	const query = 'INSERT INTO students values(?, ?)';
-
-	connection.query(query, [student.rollNo, student.name], (err, results, fields) => {
-		if (err) {
-			console.error(err);
-			res.json({
-				success: false,
-				message: 'Error occured'
-			});
-		} else {
-			res.json({
-				success: true,
-				message: 'Successfully added student'
-			});
-		}
-	});
-});
-
-// fetch all students
-app.get('/get-students', (req, res) => {
-	const query = 'SELECT * FROM students';
-    connection.query(query, (err, results, fields) => {
-    	if (err) {
-    		console.error(err);
-    		res.json({
-    			success: false,
-    			message: 'Error occured'
-    		});
-    	} else {
-    		res.json({
-    			success: true,
-    			result: results
-    		});
-    	}
-    });
-});
-
