@@ -1,0 +1,28 @@
+version: "2.1"
+services:
+  courses-ms:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      courses-db:
+        condition: service_healthy
+    healthcheck:
+      test: "curl -I courses-ms:3000/courses-ms/resources/courses/ --fail"
+      interval: 20s
+      retries: 10
+
+  reviews_db:
+    image: mysql:5.7
+    healthcheck:
+      test: "mysqlcheck -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE"
+      interval: 20s
+      timeout: 5s
+      retries: 15
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
