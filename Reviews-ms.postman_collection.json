@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "db7a2a09-0ee4-4eae-ac43-ff71e472c42f",
+		"name": "Reviews-ms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get  review",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3003/get-reviews/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"get-reviews",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3003/get-reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"get-reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get  suggestion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3003/get-suggestions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"get-suggestions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all suggestions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3003/get-suggestions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"get-suggestions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get average grade for a book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3003/get-average/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"get-average",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New Review",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"book_id\": 3,\n\t\"user_id\": 23,\n\t\"review\": \"Libro normal\",\n\t\"grade\": 3\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3003/add-review",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"add-review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New suggestion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"book_id1\": 3,\n\t\"book_id2\": 23\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3003/add-suggestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"add-suggestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update completely a review",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"review_id\" : 1,\n\"book_id\": 3,\n\"user_id\": 23,\n\"review\": \"Libro normal\",\n\"grade\": 3\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:3003/update-review",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"update-review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update completely a suggestion",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"suggestion_id\": 3,\n\t\"book_id1\": 3,\n\t\"book_id2\": 23\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3003/update-suggestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"update-suggestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a review",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"review_id\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3003/delete-review",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"delete-review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a suggestion",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"suggestion_id\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3003/delete-suggestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"delete-suggestion"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
