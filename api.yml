@@ -25,14 +25,8 @@ paths:
           description: Ok
           schema:
             $ref: '#/definitions/getAllReviews'
-        '406':
-          description: Not Acceptable (Invalid Params)
-          schema:
-            $ref: '#/definitions/ErrorModel'
         '500':
           description: Internal Server Error
-          schema:
-            $ref: '#/definitions/ErrorModel'
             
   /get-reviews/{code}:  
     get:
@@ -49,18 +43,17 @@ paths:
           description: Ok
           schema:
             $ref: '#/definitions/Review'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
         '404':
           description: Not Found
           schema:
             $ref: '#/definitions/ErrorModel'
-        '406':
-            description: Not Acceptable (Invalid Params)
-            schema:
-              $ref: '#/definitions/ErrorModel'
+
         '500':
-          description: unexpected error
-          schema:
-            $ref: '#/definitions/ErrorModel'
+          description: Internal Server Error
 
   /get-suggestions:
     get:
@@ -70,15 +63,9 @@ paths:
         '200':
           description: Ok
           schema:
-            $ref: '#/definitions/getAllSuggestions'
-        '406':
-          description: Not Acceptable (Invalid Params)
-          schema:
-            $ref: '#/definitions/ErrorModel'
+            $ref: '#/definitions/getAllReviews'
         '500':
           description: Internal Server Error
-          schema:
-            $ref: '#/definitions/ErrorModel'
             
   /get-suggestions/{code}:  
     get:
@@ -94,20 +81,19 @@ paths:
         '200':
           description: Ok
           schema:
-            $ref: '#/definitions/Suggestion'
+            $ref: '#/definitions/Review'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
         '404':
           description: Not Found
           schema:
             $ref: '#/definitions/ErrorModel'
-        '406':
-            description: Not Acceptable (Invalid Params)
-            schema:
-              $ref: '#/definitions/ErrorModel'
+
         '500':
-          description: unexpected error
-          schema:
-            $ref: '#/definitions/ErrorModel'  
-  
+          description: Internal Server Error
+          
   /get-average/{code}:  
     get:
       summary: Returns the average grade value of the book with the given code
@@ -123,14 +109,14 @@ paths:
           description: Ok
           schema:
             $ref: '#/definitions/AvgGrade'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
         '404':
           description: Not Found
           schema:
             $ref: '#/definitions/ErrorModel'
-        '406':
-            description: Not Acceptable (Invalid Params)
-            schema:
-              $ref: '#/definitions/ErrorModel'
         '500':
           description: unexpected error
           schema:
@@ -150,14 +136,14 @@ paths:
       responses:
         '201':
           description: Created
+          schema:
+            $ref: '#/definitions/ErrorModel'
         '400':
           description: Bad Request
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
           description: Internal Server Error
-          schema:
-            $ref: '#/definitions/ErrorModel'
             
   /add-suggestion/:
     post:
@@ -173,14 +159,14 @@ paths:
       responses:
         '201':
           description: Created
+          schema:
+            $ref: '#/definitions/ErrorModel'
         '400':
           description: Bad Request
           schema:
             $ref: '#/definitions/ErrorModel'
         '500':
           description: Internal Server Error
-          schema:
-            $ref: '#/definitions/ErrorModel'
   
   /update-review/:
     put:
@@ -196,18 +182,16 @@ paths:
       responses:
         '200':
           description: OK
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'  
         '404':
           description: Not Found
           schema:
             $ref: '#/definitions/ErrorModel'
-        '406':
-            description: Not Acceptable (Invalid Params)
-            schema:
-              $ref: '#/definitions/ErrorModel'
         '500':
-          description: unexpected error
-          schema:
-            $ref: '#/definitions/ErrorModel'
+          description: Internal Server Error
             
   /update-suggestion/:
     put:
@@ -223,18 +207,16 @@ paths:
       responses:
         '200':
           description: OK
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'  
         '404':
           description: Not Found
           schema:
             $ref: '#/definitions/ErrorModel'
-        '406':
-            description: Not Acceptable (Invalid Params)
-            schema:
-              $ref: '#/definitions/ErrorModel'
         '500':
-          description: unexpected error
-          schema:
-            $ref: '#/definitions/ErrorModel'
+          description: Internal Server Error
 
   /delete-review/:
     delete:
@@ -250,18 +232,16 @@ paths:
       responses:
         '200':
           description: Ok
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'  
         '404':
           description: Not Found
           schema:
             $ref: '#/definitions/ErrorModel'
-        '406':
-            description: Not Acceptable (Invalid Params)
-            schema:
-              $ref: '#/definitions/ErrorModel'
         '500':
-          description: unexpected error
-          schema:
-            $ref: '#/definitions/ErrorModel'
+          description: Internal Server Error
             
   /delete-suggestion/:
     delete:
@@ -277,18 +257,16 @@ paths:
       responses:
         '200':
           description: Ok
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'  
         '404':
           description: Not Found
           schema:
             $ref: '#/definitions/ErrorModel'
-        '406':
-            description: Not Acceptable (Invalid Params)
-            schema:
-              $ref: '#/definitions/ErrorModel'
         '500':
-          description: unexpected error
-          schema:
-            $ref: '#/definitions/ErrorModel'
+          description: Internal Server Error
 
 definitions:
 
@@ -324,7 +302,7 @@ definitions:
   AvgGrade:
     type: object
     properties:
-      Avg(grade):
+      Avg:
         type: number
         
   getAllReviews:
@@ -413,7 +391,4 @@ definitions:
     properties:
       message:
         type: string
-      code:
-        type: number
-      description:
-        type: object
+

@@ -10,6 +10,8 @@ CREATE TABLE `reviews` (
   `grade` INT NOT NULL,
   PRIMARY KEY (`review_id`));
 
+ALTER TABLE `reviews` ADD UNIQUE `unique_index`(`book_id`, `user_id`);
+
 DROP TABLE IF EXISTS `suggestions`;
 CREATE TABLE `suggestions` (
   `suggestion_id` INT NOT NULL AUTO_INCREMENT,

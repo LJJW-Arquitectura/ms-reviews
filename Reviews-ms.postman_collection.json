@@ -6,27 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Get  review",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:3003/get-reviews/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3003",
-					"path": [
-						"get-reviews",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get all reviews",
 			"request": {
 				"method": "GET",
@@ -47,20 +26,20 @@
 			"response": []
 		},
 		{
-			"name": "Get  suggestion",
+			"name": "Get review by id",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:3003/get-suggestions/1",
+					"raw": "http://localhost:3003/get-reviews/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3003",
 					"path": [
-						"get-suggestions",
+						"get-reviews",
 						"1"
 					]
 				}
@@ -82,6 +61,27 @@
 					"port": "3003",
 					"path": [
 						"get-suggestions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get suggestion by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3003/get-suggestions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"get-suggestions",
+						"1"
 					]
 				}
 			},
@@ -176,7 +176,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"review_id\" : 1,\n\"book_id\": 3,\n\"user_id\": 23,\n\"review\": \"Libro normal\",\n\"grade\": 3\n}\n"
+					"raw": "{\n\"review_id\" : 20,\n\"book_id\": 3,\n\"user_id\": 23,\n\"review\": \"Libro normal\",\n\"grade\": 3\n}\n"
 				},
 				"url": {
 					"raw": "http://localhost:3003/update-review",

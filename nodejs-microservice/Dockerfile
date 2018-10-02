@@ -21,4 +21,5 @@ CMD ["npm", "start"]
 #sudo docker-compose rm -v
 
 #SABER EN QUE PUERTO CORRE LA DB
-#sudo docker inspect pruebaexpress_reviews-db_1 | grep IPAddress
+#sudo docker inspect reviewsms_reviews-db_1 | grep IPAddress
+
