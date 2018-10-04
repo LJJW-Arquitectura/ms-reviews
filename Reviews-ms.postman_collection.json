@@ -12,10 +12,9 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:3003/get-reviews",
-					"protocol": "http",
+					"raw": "{{url}}:3003/get-reviews",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
@@ -26,21 +25,20 @@
 			"response": []
 		},
 		{
-			"name": "Get review by id",
+			"name": "Get  review by id",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:3003/get-reviews/1",
-					"protocol": "http",
+					"raw": "{{url}}:3003/get-reviews/2",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
 						"get-reviews",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -53,10 +51,9 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:3003/get-suggestions",
-					"protocol": "http",
+					"raw": "{{url}}:3003/get-suggestions",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
@@ -67,16 +64,15 @@
 			"response": []
 		},
 		{
-			"name": "Get suggestion by id",
+			"name": "Get  suggestion",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:3003/get-suggestions/1",
-					"protocol": "http",
+					"raw": "{{url}}:3003/get-suggestions/1",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
@@ -94,10 +90,9 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:3003/get-average/2",
-					"protocol": "http",
+					"raw": "{{url}}:3003/get-average/2",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
@@ -115,18 +110,23 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"disabled": true
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"book_id\": 3,\n\t\"user_id\": 23,\n\t\"review\": \"Libro normal\",\n\t\"grade\": 3\n\t\n}"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "archivo",
+							"type": "file"
+						}
+					]
 				},
 				"url": {
-					"raw": "http://localhost:3003/add-review",
-					"protocol": "http",
+					"raw": "{{url}}:3003/add-review",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
@@ -151,10 +151,9 @@
 					"raw": "{\n\t\"book_id1\": 3,\n\t\"book_id2\": 23\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3003/add-suggestion",
-					"protocol": "http",
+					"raw": "{{url}}:3003/add-suggestion",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
@@ -179,10 +178,9 @@
 					"raw": "{\n\"review_id\" : 20,\n\"book_id\": 3,\n\"user_id\": 23,\n\"review\": \"Libro normal\",\n\"grade\": 3\n}\n"
 				},
 				"url": {
-					"raw": "http://localhost:3003/update-review",
-					"protocol": "http",
+					"raw": "{{url}}:3003/update-review",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
@@ -207,10 +205,9 @@
 					"raw": "{\n\t\"suggestion_id\": 3,\n\t\"book_id1\": 3,\n\t\"book_id2\": 23\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3003/update-suggestion",
-					"protocol": "http",
+					"raw": "{{url}}:3003/update-suggestion",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
@@ -235,10 +232,9 @@
 					"raw": "{\n\"review_id\": 1\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3003/delete-review",
-					"protocol": "http",
+					"raw": "{{url}}:3003/delete-review",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
@@ -258,15 +254,11 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\"suggestion_id\": 1\n}"
-				},
+				"body": {},
 				"url": {
-					"raw": "http://localhost:3003/delete-suggestion",
-					"protocol": "http",
+					"raw": "{{url}}:3003/delete-suggestion",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
