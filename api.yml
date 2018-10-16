@@ -7,7 +7,7 @@ info:
   description: JavaScript + MySQL
   license:
     name: Software Architecture 2018-II
-host: 192.168.99.101:3003 
+host: 192.168.0.10:3003 
 #basePath: 
 schemes:
   - http
