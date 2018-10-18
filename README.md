@@ -1,6 +1,6 @@
 # Microservice for Reviews and Suggestions
 
-Juan David Garcia Niño prueba windows
+Juan David Garcia Niño
 
 This repository contains a nodejs project designed to run as a dockerized microservice that presents a REST API.
 
