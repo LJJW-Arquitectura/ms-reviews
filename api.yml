@@ -7,7 +7,7 @@ info:
   description: JavaScript + MySQL
   license:
     name: Software Architecture 2018-II
-host: 192.168.0.10:3003 
+host: 192.168.0.101:3003 
 #basePath: 
 schemes:
   - http
@@ -16,7 +16,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /get-reviews:
+  /reviews:
     get:
       summary: Returns all reviews
       operationId: getAllReviews
@@ -27,8 +27,30 @@ paths:
             $ref: '#/definitions/getAllReviews'
         '500':
           description: Internal Server Error
+  
+    post:
+      summary: Creates a new review
+      operationId: addReview
+      parameters:
+        - name: review
+          in: body
+          required: true
+          description: Review Object
+          schema:
+            $ref: '#/definitions/addReview'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
             
-  /get-reviews/{code}:  
+  /reviews/{code}:  
     get:
       summary: Returns a review with the given code
       operationId: getReviewByCode
@@ -54,8 +76,60 @@ paths:
 
         '500':
           description: Internal Server Error
+    put:
+      summary: Completely updates a existent review
+      operationId: updateReview
+      parameters:
+        - name: code
+          in: path
+          description: Review id
+          required: true
+          type: integer
+        - name: review
+          in: body
+          required: true
+          description: Review Object
+          schema:
+            $ref: '#/definitions/updateReview'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'  
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          
+    delete:
+      summary: Deletes a review with the given code
+      operationId: deleteReview
+      parameters:
+        - name: code
+          in: path
+          description: Review id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'  
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
 
-  /get-suggestions:
+
+  /suggestions:
     get:
       summary: Returns all suggestions
       operationId: getAllSuggestions
@@ -63,11 +137,34 @@ paths:
         '200':
           description: Ok
           schema:
-            $ref: '#/definitions/getAllReviews'
+            $ref: '#/definitions/getAllSuggestions'
         '500':
           description: Internal Server Error
+          
+    post:
+      summary: Creates a new Suggestion
+      operationId: addSuggestion
+      parameters:
+        - name: suggestion
+          in: body
+          required: true
+          description: Suggestion Object
+          schema:
+            $ref: '#/definitions/addSuggestion'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+  
             
-  /get-suggestions/{code}:  
+  /suggestions/{code}:  
     get:
       summary: Returns a suggestion with the given code
       operationId: getSuggestionByCode
@@ -81,7 +178,7 @@ paths:
         '200':
           description: Ok
           schema:
-            $ref: '#/definitions/Review'
+            $ref: '#/definitions/Suggestion'
         '400':
           description: Bad Request
           schema:
@@ -90,9 +187,62 @@ paths:
           description: Not Found
           schema:
             $ref: '#/definitions/ErrorModel'
-
         '500':
           description: Internal Server Error
+          
+    put:
+      summary: Completely updates a existent suggestion
+      operationId: updateSuggestion
+      parameters:
+        - name: code
+          in: path
+          description: Suggestion id
+          required: true
+          type: integer
+        - name: suggestion
+          in: body
+          required: true
+          description: Suggestion Object
+          schema:
+            $ref: '#/definitions/updateSuggestion'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'  
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          
+    delete:
+      summary: Deletes a suggestion with the given code
+      operationId: deleteSuggestion
+      parameters:
+        - name: code
+          in: path
+          description: Suggestion id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'  
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+
+
           
   /get-average/{code}:  
     get:
@@ -121,152 +271,6 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/ErrorModel'
-            
-  /add-review/:
-    post:
-      summary: Creates a new review
-      operationId: addReview
-      parameters:
-        - name: review
-          in: body
-          required: true
-          description: Review Object
-          schema:
-            $ref: '#/definitions/addReview'
-      responses:
-        '201':
-          description: Created
-          schema:
-            $ref: '#/definitions/ErrorModel'
-        '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorModel'
-        '500':
-          description: Internal Server Error
-            
-  /add-suggestion/:
-    post:
-      summary: Creates a new Suggestion
-      operationId: addSuggestion
-      parameters:
-        - name: suggestion
-          in: body
-          required: true
-          description: Suggestion Object
-          schema:
-            $ref: '#/definitions/addSuggestion'
-      responses:
-        '201':
-          description: Created
-          schema:
-            $ref: '#/definitions/ErrorModel'
-        '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorModel'
-        '500':
-          description: Internal Server Error
-  
-  /update-review/:
-    put:
-      summary: Completely updates a existent review
-      operationId: updateReview
-      parameters:
-        - name: review
-          in: body
-          required: true
-          description: Review Object
-          schema:
-            $ref: '#/definitions/updateReview'
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorModel'  
-        '404':
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorModel'
-        '500':
-          description: Internal Server Error
-            
-  /update-suggestion/:
-    put:
-      summary: Completely updates a existent suggestion
-      operationId: updateSuggestion
-      parameters:
-        - name: suggestion
-          in: body
-          required: true
-          description: Suggestion Object
-          schema:
-            $ref: '#/definitions/Suggestion'
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorModel'  
-        '404':
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorModel'
-        '500':
-          description: Internal Server Error
-
-  /delete-review/:
-    delete:
-      summary: Deletes a review with the given code
-      operationId: deleteReview
-      parameters:
-        - name: review_id
-          in: body
-          description: The id of the review to be deleted
-          required: true
-          schema:
-            $ref: '#/definitions/deleteReview'
-      responses:
-        '200':
-          description: Ok
-        '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorModel'  
-        '404':
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorModel'
-        '500':
-          description: Internal Server Error
-            
-  /delete-suggestion/:
-    delete:
-      summary: Deletes a suggestion with the given code
-      operationId: deleteSuggestion
-      parameters:
-        - name: suggestion_id
-          in: body
-          description: The id of the suggestion to be deleted
-          required: true
-          schema:
-            $ref: '#/definitions/deleteSuggestion'
-      responses:
-        '200':
-          description: Ok
-        '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorModel'  
-        '404':
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorModel'
-        '500':
-          description: Internal Server Error
 
 definitions:
 
@@ -356,8 +360,6 @@ definitions:
   updateReview:
     type: object
     properties:
-      review_id:
-        type: integer
       book_id:
         type: integer
       user_id:
@@ -369,19 +371,14 @@ definitions:
         minimum: 1
         maximum: 5 
         
-  deleteReview:
+  updateSuggestion:
     type: object
     properties:
-      review_id:
+      book_id1:
         type: integer
-  
-  deleteSuggestion:
-    type: object
-    properties:
-      sugggestion_id:
+      book_id2:
         type: integer
 
-        
 # Errors
   ErrorModel:
     type: object

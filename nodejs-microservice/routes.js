@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
 });
 module.exports = function (app) {
     // get all reviews
-    app.get('/get-reviews', (req, res) => {
+    app.get('/reviews', (req, res) => {
         const query = 'SELECT * FROM reviews';
         connection.query(query, (err, results, fields) => {
             if (err) {
@@ -24,7 +24,7 @@ module.exports = function (app) {
     });
 
     // get review by ID
-    app.get('/get-reviews/:id', (req, res) => {
+    app.get('/reviews/:id', (req, res) => {
 
         const query = 'SELECT * FROM reviews where review_id = ' + req.params.id;
         connection.query(query, (err, results, fields) => {
@@ -46,7 +46,7 @@ module.exports = function (app) {
     });
 
     // get all suggestions
-    app.get('/get-suggestions', (req, res) => {
+    app.get('/suggestions', (req, res) => {
         const query = 'SELECT * FROM suggestions';
         connection.query(query, (err, results, fields) => {
             if (err) {
@@ -63,7 +63,7 @@ module.exports = function (app) {
     });
 
     // get suggestion by ID
-    app.get('/get-suggestions/:id', (req, res) => {
+    app.get('/suggestions/:id', (req, res) => {
 
         const query = 'SELECT * FROM suggestions where suggestion_id = ' + req.params.id;
         connection.query(query, (err, results, fields) => {
@@ -108,7 +108,7 @@ module.exports = function (app) {
     });
 
     // insert a review 
-    app.post('/add-review', (req, res) => {
+    app.post('/reviews', (req, res) => {
         const review = req.body;
         const query = 'INSERT INTO reviews(book_id,user_id,review,grade) values(?, ?, ?, ?)';
 
@@ -133,10 +133,10 @@ module.exports = function (app) {
     });
 
     // insert a suggestion 
-    app.post('/add-suggestion', (req, res) => {
+    app.post('/suggestions', (req, res) => {
         const suggestion = req.body;
         const query = 'INSERT INTO suggestions(book_id1,book_id2) values(?, ?)';
-        connection.query(query, [review.book_id, review.user_id, review.review, review.grade], (err, results, fields) => {
+        connection.query(query, [suggestion.book_id1, suggestion.book_id2], (err, results, fields) => {
             if (err) {
                 console.error("errno=" + err.errno);
                 if (err.errno == 1366) { //BAD REQUEST
@@ -157,13 +157,13 @@ module.exports = function (app) {
     });
 
     // update completely a review 
-    app.put('/update-review', (req, res) => {
+    app.put('/reviews/:review_id', (req, res) => {
         const review = req.body;
-        const queryupdate = 'update reviews set book_id = ? ,user_id = ?,review = ?,grade= ? where review_id = ?';
+        const queryupdate = 'update reviews set book_id = ? ,user_id = ?,review = ?,grade= ? where review_id ='+req.params.review_id;
 
-        connection.query(queryupdate, [review.book_id, review.user_id, review.review, review.grade, review.review_id], (err, results, fields) => {
+        connection.query(queryupdate, [review.book_id, review.user_id, review.review, review.grade], (err, results, fields) => {
             if (results != undefined && results.affectedRows == 0) {
-                res.status(404).json({ message: "Review with id = " + review.review_id + " doesn't exists" });
+                res.status(404).json({ message: "Review with id = " + req.params.review_id + " doesn't exists" });
             } else if (err) {
                 console.error("errno=" + err.errno);
                 if (err.errno == 1366) { //BAD REQUEST
@@ -184,13 +184,13 @@ module.exports = function (app) {
     });
 
     // update completely a suggestion 
-    app.put('/update-suggestion', (req, res) => {
+    app.put('/suggestions/:suggestion_id', (req, res) => {
         const suggestion = req.body;
-        const queryupdate = 'update suggestions set book_id1 = ? ,book_id2 = ? where suggestion_id = ?';
+        const queryupdate = 'update suggestions set book_id1 = ? ,book_id2 = ? where suggestion_id ='+req.params.suggestion_id;
 
-        connection.query(queryupdate, [suggestion.book_id1, suggestion.book_id2, suggestion.suggestion_id], (err, results, fields) => {
+        connection.query(queryupdate, [suggestion.book_id1, suggestion.book_id2], (err, results, fields) => {
             if (results != undefined && results.affectedRows == 0) {
-                res.status(404).json({ message: "Suggestion with id = " + suggestion.suggestion_id + " doesn't exists" });
+                res.status(404).json({ message: "Suggestion with id = " + req.params.suggestion_id + " doesn't exists" });
             } else if (err) {
                 console.error("errno=" + err.errno);
                 if (err.errno == 1366) { //BAD REQUEST
@@ -211,15 +211,15 @@ module.exports = function (app) {
     });
 
     // delete a review 
-    app.delete('/delete-review', (req, res) => {
+    app.delete('/reviews/:review_id', (req, res) => {
         const body = req.body;
-        const query = 'delete from reviews where review_id = ?';
+        const query = 'delete from reviews where review_id ='+req.params.review_id;
 
-        connection.query(query, [body.review_id], (err, results, fields) => {
-            if (isNaN(body.review_id)) {
+        connection.query(query,[], (err, results, fields) => {
+            if (isNaN(req.params.review_id)) {
                 res.status(400).json({ message: "id is not valid" });
             } else if (results != undefined && results.affectedRows == 0) {
-                res.status(404).json({ message: "Review with id = " + body.review_id + " doesn't exists" });
+                res.status(404).json({ message: "Review with id = " + req.params.review_id + " doesn't exists" });
             } else if (err) {
                 console.error(err);
                 res.json({
@@ -234,15 +234,15 @@ module.exports = function (app) {
     });
 
     // delete a suggestion 
-    app.delete('/delete-suggestion', (req, res) => {
+    app.delete('/suggestions/:suggestion_id', (req, res) => {
         const body = req.body;
-        const query = 'delete from suggestions where suggestion_id = ?';
+        const query = 'delete from suggestions where suggestion_id ='+req.params.suggestion_id;
 
-        connection.query(query, [body.suggestion_id], (err, results, fields) => {
-            if (isNaN(body.suggestion_id)) {
+        connection.query(query, [], (err, results, fields) => {
+            if (isNaN(req.params.suggestion_id)) {
                 res.status(400).json({ message: "id is not valid" });
             } else if (results != undefined && results.affectedRows == 0) {
-                res.status(404).json({ message: "Suggestion with id = " + body.suggestion_id + " doesn't exists" });
+                res.status(404).json({ message: "Suggestion with id = " + req.params.suggestion_id + " doesn't exists" });
             } else if (err) {
                 console.error(err);
                 res.json({
