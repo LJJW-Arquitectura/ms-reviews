@@ -10,94 +10,18 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "{{url}}:3003/get-reviews",
+					"raw": "{{url}}:3003/reviews",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
-						"get-reviews"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get  review by id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "{{url}}:3003/get-reviews/2",
-					"host": [
-						"{{url}}"
-					],
-					"port": "3003",
-					"path": [
-						"get-reviews",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get all suggestions",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "{{url}}:3003/get-suggestions",
-					"host": [
-						"{{url}}"
-					],
-					"port": "3003",
-					"path": [
-						"get-suggestions"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get  suggestion",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "{{url}}:3003/get-suggestions/1",
-					"host": [
-						"{{url}}"
-					],
-					"port": "3003",
-					"path": [
-						"get-suggestions",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get average grade for a book",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "{{url}}:3003/get-average/2",
-					"host": [
-						"{{url}}"
-					],
-					"port": "3003",
-					"path": [
-						"get-average",
-						"2"
+						"reviews"
 					]
 				}
 			},
@@ -110,27 +34,124 @@
 				"header": [
 					{
 						"key": "Content-Type",
+						"name": "Content-Type",
 						"value": "application/json",
-						"disabled": true
+						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "archivo",
-							"type": "file"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n\"book_id\": 1,\n\"user_id\": 20,\n\"review\": \"BEST LIBRO EVA\",\n\"grade\": 5\n}"
 				},
 				"url": {
-					"raw": "{{url}}:3003/add-review",
+					"raw": "{{url}}:3003/reviews",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
-						"add-review"
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get  review by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:3003/reviews/1",
+					"host": [
+						"{{url}}"
+					],
+					"port": "3003",
+					"path": [
+						"reviews",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update completely a review",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"book_id\": 3,\n\"user_id\": 23,\n\"review\": \"Libro asd\",\n\"grade\": 3\n}\n"
+				},
+				"url": {
+					"raw": "{{url}}:3003/reviews/2",
+					"host": [
+						"{{url}}"
+					],
+					"port": "3003",
+					"path": [
+						"reviews",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a review",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:3003/reviews/1",
+					"host": [
+						"{{url}}"
+					],
+					"port": "3003",
+					"path": [
+						"reviews",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all suggestions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:3003/suggestions",
+					"host": [
+						"{{url}}"
+					],
+					"port": "3003",
+					"path": [
+						"suggestions"
 					]
 				}
 			},
@@ -151,40 +172,36 @@
 					"raw": "{\n\t\"book_id1\": 3,\n\t\"book_id2\": 23\n}"
 				},
 				"url": {
-					"raw": "{{url}}:3003/add-suggestion",
+					"raw": "{{url}}:3003/suggestions",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
-						"add-suggestion"
+						"suggestions"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Update completely a review",
+			"name": "Get  suggestion",
 			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
+				"method": "GET",
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"review_id\" : 20,\n\"book_id\": 3,\n\"user_id\": 23,\n\"review\": \"Libro normal\",\n\"grade\": 3\n}\n"
+					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}:3003/update-review",
+					"raw": "{{url}}:3003/suggestions/2",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
-						"update-review"
+						"suggestions",
+						"2"
 					]
 				}
 			},
@@ -202,43 +219,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"suggestion_id\": 3,\n\t\"book_id1\": 3,\n\t\"book_id2\": 23\n}"
+					"raw": "{\n\t\"book_id1\": 3,\n\t\"book_id2\": 23\n}"
 				},
 				"url": {
-					"raw": "{{url}}:3003/update-suggestion",
+					"raw": "{{url}}:3003/suggestions/3",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
-						"update-suggestion"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete a review",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\"review_id\": 1\n}"
-				},
-				"url": {
-					"raw": "{{url}}:3003/delete-review",
-					"host": [
-						"{{url}}"
-					],
-					"port": "3003",
-					"path": [
-						"delete-review"
+						"suggestions",
+						"3"
 					]
 				}
 			},
@@ -254,15 +245,42 @@
 						"value": "application/json"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "{{url}}:3003/delete-suggestion",
+					"raw": "{{url}}:3003/suggestions/2",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
-						"delete-suggestion"
+						"suggestions",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get average grade for a book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:3003/get-average/2",
+					"host": [
+						"{{url}}"
+					],
+					"port": "3003",
+					"path": [
+						"get-average",
+						"2"
 					]
 				}
 			},
