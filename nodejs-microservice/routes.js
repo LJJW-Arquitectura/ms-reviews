@@ -17,7 +17,7 @@ module.exports = function (app) {
                 });
             } else {
                 res.json({
-                    result: results
+                    results
                 });
             }
         });
@@ -39,7 +39,7 @@ module.exports = function (app) {
                 });
             } else {
                 res.json({
-                    result: results
+                    results
                 });
             }
         });
@@ -56,7 +56,7 @@ module.exports = function (app) {
                 });
             } else {
                 res.json({
-                    result: results
+                    results
                 });
             }
         });
@@ -78,7 +78,7 @@ module.exports = function (app) {
                 });
             } else {
                 res.json({
-                    result: results
+                    results
                 });
             }
         });
@@ -101,7 +101,7 @@ module.exports = function (app) {
                 });
             } else {
                 res.json({
-                    result: results
+                     results
                 });
             }
         });
