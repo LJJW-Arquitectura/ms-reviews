@@ -302,6 +302,8 @@ definitions:
         type: integer
       book_id2:
         type: integer
+      reason:
+        type: string
         
   AvgGrade:
     type: object
@@ -356,6 +358,8 @@ definitions:
         type: integer
       book_id2:
         type: integer
+      reason:
+        type: string
 
   updateReview:
     type: object
@@ -378,6 +382,8 @@ definitions:
         type: integer
       book_id2:
         type: integer
+      reason:
+        type: string
 
 # Errors
   ErrorModel:

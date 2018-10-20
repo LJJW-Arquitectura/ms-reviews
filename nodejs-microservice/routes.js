@@ -135,8 +135,8 @@ module.exports = function (app) {
     // insert a suggestion 
     app.post('/suggestions', (req, res) => {
         const suggestion = req.body;
-        const query = 'INSERT INTO suggestions(book_id1,book_id2) values(?, ?)';
-        connection.query(query, [suggestion.book_id1, suggestion.book_id2], (err, results, fields) => {
+        const query = 'INSERT INTO suggestions(book_id1,book_id2,reason) values(?, ?, ?)';
+        connection.query(query, [suggestion.book_id1, suggestion.book_id2, suggestion.reason], (err, results, fields) => {
             if (err) {
                 console.error("errno=" + err.errno);
                 if (err.errno == 1366) { //BAD REQUEST
@@ -186,9 +186,9 @@ module.exports = function (app) {
     // update completely a suggestion 
     app.put('/suggestions/:suggestion_id', (req, res) => {
         const suggestion = req.body;
-        const queryupdate = 'update suggestions set book_id1 = ? ,book_id2 = ? where suggestion_id ='+req.params.suggestion_id;
+        const queryupdate = 'update suggestions set book_id1 = ? ,book_id2 = ? ,reason = ? where suggestion_id ='+req.params.suggestion_id;
 
-        connection.query(queryupdate, [suggestion.book_id1, suggestion.book_id2], (err, results, fields) => {
+        connection.query(queryupdate, [suggestion.book_id1, suggestion.book_id2,suggestion.reason], (err, results, fields) => {
             if (results != undefined && results.affectedRows == 0) {
                 res.status(404).json({ message: "Suggestion with id = " + req.params.suggestion_id + " doesn't exists" });
             } else if (err) {
