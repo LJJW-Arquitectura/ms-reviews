@@ -6,7 +6,7 @@ CREATE TABLE `reviews` (
   `book_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `creationdate` DATETIME DEFAULT CURRENT_TIMESTAMP,
-  `review` VARCHAR(60) NOT NULL,
+  `review` VARCHAR(200) NOT NULL,
   `grade` INT NOT NULL,
   PRIMARY KEY (`review_id`));
 
@@ -17,7 +17,7 @@ CREATE TABLE `suggestions` (
   `suggestion_id` INT NOT NULL AUTO_INCREMENT,
   `book_id1` INT NOT NULL,
   `book_id2` INT NOT NULL,
-  `reason` VARCHAR(60) NOT NULL,
+  `reason` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`suggestion_id`));
 ALTER TABLE `suggestions` ADD UNIQUE `unique_index`(`book_id1`, `book_id2`);
 

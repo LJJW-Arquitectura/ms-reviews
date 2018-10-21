@@ -300,6 +300,34 @@ paths:
           schema:
             $ref: '#/definitions/ErrorModel'
 
+  /get-suggestions/{code}:  
+    get:
+      summary: Returns all the suggestions of the book with the given code
+      operationId: getBookSuggestions
+      parameters:
+        - name: code
+          in: path
+          description: The code of the book to be used
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/getAllSuggestions'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
 definitions:
 
   Review:
