@@ -92,7 +92,9 @@ module.exports = function (app) {
             if (isNaN(req.params.book_id)) {
                 res.status(400).json({ message: "id is not valid" });
             } else if (results[0].Avg == null) {
-                res.status(404).json({ message: "Book with id = " + req.params.book_id + " doesn't exists" });;
+                res.json({
+                    results: []
+                });
             } else if (err) {
                 console.error(err);
                 res.json({
@@ -115,7 +117,9 @@ module.exports = function (app) {
             if (isNaN(req.params.book_id)) {
                 res.status(400).json({ message: "id is not valid" });
             } else if (Object.keys(results).length == 0) {
-                res.status(404).json({ message: "Reviews of the book with id = " + req.params.book_id + " don't exist" });;
+                res.json({
+                    results: []
+                });
             } else if (err) {
                 console.error(err);
                 res.json({
@@ -138,7 +142,9 @@ module.exports = function (app) {
                 if (isNaN(req.params.book_id)) {
                     res.status(400).json({ message: "id is not valid" });
                 } else if (Object.keys(results).length == 0) {
-                    res.status(404).json({ message: "Suggestions of the book with id = " + req.params.book_id + " don't exist" });;
+                    res.json({
+                        results: []
+                    });
                 } else if (err) {
                     console.error(err);
                     res.json({
