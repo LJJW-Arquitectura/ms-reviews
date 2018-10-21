@@ -22,4 +22,4 @@ CREATE TABLE `suggestions` (
 ALTER TABLE `suggestions` ADD UNIQUE `unique_index`(`book_id1`, `book_id2`);
 
 INSERT INTO reviews(book_id,user_id,review,grade) VALUES(1,1,"Muy buen libro",5),(2,2,"Mal libro",1),(1,3,"Libro normal",3),(2,1,"Libro pesimo",2);
-INSERT INTO suggestions(book_id1,book_id2,reason) VALUES(1,2,"Mismo autor"),(3,4,"Ambos de accion"),(1,4,"Ambos thriller"),(2,3,"porque si");
+INSERT INTO suggestions(book_id1,book_id2,reason) VALUES(1,2,"Mismo autor"),(2,1,"Mismo autor"),(3,4,"Ambos de accion"),(4,3,"Ambos de accion"),(1,4,"Ambos thriller"),(4,1,"Ambos thriller");
