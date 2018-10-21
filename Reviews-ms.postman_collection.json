@@ -169,7 +169,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"book_id1\": 3,\n\t\"book_id2\": 23\n}"
+					"raw": "{\n\t\"book_id1\": 3,\n\t\"book_id2\": 23,\n\t\"reason\": \"Ambos son de terror\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}:3003/suggestions",
@@ -219,7 +219,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"book_id1\": 3,\n\t\"book_id2\": 23\n}"
+					"raw": "{\n\t\"book_id1\": 2,\n\t\"book_id2\": 12,\n\t\"reason\": \"Ambos son de sci-fi\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}:3003/suggestions/3",
@@ -273,14 +273,60 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}:3003/get-average/2",
+					"raw": "{{url}}:3003/get-average/1",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
 						"get-average",
-						"2"
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all reviews for a book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:3003/get-reviews/1",
+					"host": [
+						"{{url}}"
+					],
+					"port": "3003",
+					"path": [
+						"get-reviews",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all suggestions for a book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:3003/get-suggestions/1",
+					"host": [
+						"{{url}}"
+					],
+					"port": "3003",
+					"path": [
+						"get-suggestions",
+						"1"
 					]
 				}
 			},
