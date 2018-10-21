@@ -133,7 +133,7 @@ module.exports = function (app) {
         // get all suggestions by book_ID
         app.get('/get-suggestions/:book_id', (req, res) => {
 
-            const query = 'SELECT * FROM suggestions where book_id = ' + req.params.book_id;
+            const query = 'SELECT * FROM suggestions where book_id1 = ' + req.params.book_id + " or book_id2 =" + req.params.book_id;
             connection.query(query, (err, results, fields) => {
                 if (isNaN(req.params.book_id)) {
                     res.status(400).json({ message: "id is not valid" });
