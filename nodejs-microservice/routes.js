@@ -138,7 +138,7 @@ module.exports = function (app) {
      app.get('/get-reviewsUser/:user_id', (req, res) => {       
         const query = 'SELECT * FROM reviews where user_id = ' + req.params.user_id;
         connection.query(query, (err, results, fields) => {
-            if (isNaN(req.params.book_id)) {
+            if (isNaN(req.params.user_id)) {
                 res.status(400).json({ message: "id is not valid" });
             } else if (Object.keys(results).length == 0) {
                 res.json({
@@ -187,7 +187,7 @@ module.exports = function (app) {
         
         const query = 'SELECT * FROM suggestions where user_id = ' + req.params.user_id ;
         connection.query(query, (err, results, fields) => {
-            if (isNaN(req.params.book_id)) {
+            if (isNaN(req.params.user_id)) {
                 res.status(400).json({ message: "id is not valid" });
             } else if (Object.keys(results).length == 0) {
                 res.json({
