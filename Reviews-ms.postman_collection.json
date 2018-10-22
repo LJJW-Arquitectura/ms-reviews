@@ -41,7 +41,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"book_id\": 3,\n\"user_id\": 20,\n\"review\": \"BEST LIBRO EVA\",\n\"grade\": 5\n}"
+					"raw": "{\n\"book_id\": 3,\n\"user_id\": 2,\n\"username\": \"carlos2\",\n\"review\": \"BEST LIBRO EVA\",\n\"grade\": 5\n}"
 				},
 				"url": {
 					"raw": "{{url}}:3003/reviews",
@@ -91,17 +91,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"book_id\": 3,\n\"user_id\": 23,\n\"review\": \"Libro asd\",\n\"grade\": 3\n}\n"
+					"raw": "{\n\"book_id\": 3,\n\"user_id\": 23,\n\"username\": \"carlos\",\n\"review\": \"Libro asd\",\n\"grade\": 3\n}\n"
 				},
 				"url": {
-					"raw": "{{url}}:3003/reviews/2",
+					"raw": "{{url}}:3003/reviews/1",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
 						"reviews",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -169,7 +169,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"user_id\": 1,\n\t\"book_id1\": 5,\n\t\"book_id2\": 23,\n\t\"reason\": \"Ambos son de terror\"\n}"
+					"raw": "{\n\t\"user_id\": 1,\n\t\"username\": \"carlos\",\n\t\"book_id1\": 5,\n\t\"booktitle1\": \"libro1\",\n\t\"book_id2\": 23,\n\t\"booktitle2\": \"libro2\",\n\t\"reason\": \"Ambos son de terror\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}:3003/suggestions",
@@ -219,17 +219,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n\t\"user_id\": 1,\n\t\"book_id1\": 2,\n\t\"book_id2\": 12,\n\t\"reason\": \"Ambos son de sci-fi\"\n}"
+					"raw": "{\t\n\t\"user_id\": 1,\n\t\"username\": \"carlos\",\n\t\"book_id1\": 5,\n\t\"booktitle1\": \"libro1.1\",\n\t\"book_id2\": 23,\n\t\"booktitle2\": \"libro2.2\",\n\t\"reason\": \"Ambos son de sci-fi\"\n}"
 				},
 				"url": {
-					"raw": "{{url}}:3003/suggestions/3",
+					"raw": "{{url}}:3003/suggestions/1",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
 						"suggestions",
-						"3"
+						"1"
 					]
 				}
 			},

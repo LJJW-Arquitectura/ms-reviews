@@ -21,7 +21,7 @@ CREATE TABLE `suggestions` (
   `book_id1` INT NOT NULL,
   `booktitle1` VARCHAR(200) NOT NULL,
   `book_id2` INT NOT NULL,
-  `booktitle1` VARCHAR(200) NOT NULL,
+  `booktitle2` VARCHAR(200) NOT NULL,
   `reason` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`suggestion_id`));
 ALTER TABLE `suggestions` ADD UNIQUE `unique_index`(`user_id`, `book_id1`, `book_id2`);

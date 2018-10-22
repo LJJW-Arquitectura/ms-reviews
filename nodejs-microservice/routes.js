@@ -235,8 +235,8 @@ module.exports = function (app) {
     // insert a suggestion 
     app.post('/suggestions', (req, res) => {
         const suggestion = req.body;
-        const query = 'INSERT INTO suggestions(user_id,username,book_id1,booktitle1,book_id2,booktitle2,reason) values(?, ?, ?, ?, ?),(?, ?, ?, ?, ?)';
-        connection.query(query, [suggestion.user_id, suggestion.username, suggestion.book_id1, suggestion.booktitle1, suggestion.book_id2, suggestion.booktitle2, suggestion.reason, suggestion.user_id, suggestion.username, suggestion.book_id1, suggestion.booktitle1, suggestion.book_id2, suggestion.booktitle2, suggestion.reason], (err, results, fields) => {
+        const query = 'INSERT INTO suggestions(user_id,username,book_id1,booktitle1,book_id2,booktitle2,reason) values(?, ?, ?, ?, ?, ?, ?),(?, ?, ?, ?, ?, ?, ?)';
+        connection.query(query, [suggestion.user_id, suggestion.username, suggestion.book_id1, suggestion.booktitle1, suggestion.book_id2, suggestion.booktitle2, suggestion.reason, suggestion.user_id, suggestion.username, suggestion.book_id2, suggestion.booktitle2, suggestion.book_id1, suggestion.booktitle1, suggestion.reason], (err, results, fields) => {
             if (err) {
                 console.error("errno=" + err.errno);
                 if (err.errno == 1366) { //BAD REQUEST
