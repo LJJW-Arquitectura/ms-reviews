@@ -22,10 +22,10 @@ module.exports = function (app) {
             }
         });
     });
-
+    
     // get review by ID
     app.get('/reviews/:id', (req, res) => {
-
+        
         const query = 'SELECT * FROM reviews where review_id = ' + req.params.id;
         connection.query(query, (err, results, fields) => {
             if (isNaN(req.params.id)) {
@@ -44,7 +44,7 @@ module.exports = function (app) {
             }
         });
     });
-
+    
     // get all suggestions
     app.get('/suggestions', (req, res) => {
         const query = 'SELECT * FROM suggestions';
@@ -61,10 +61,10 @@ module.exports = function (app) {
             }
         });
     });
-
+    
     // get suggestion by ID
     app.get('/suggestions/:id', (req, res) => {
-
+        
         const query = 'SELECT * FROM suggestions where suggestion_id = ' + req.params.id;
         connection.query(query, (err, results, fields) => {
             if (isNaN(req.params.id)) {
@@ -83,10 +83,10 @@ module.exports = function (app) {
             }
         });
     });
-
+    
     // get average grade by ID
     app.get('/get-average/:book_id', (req, res) => {
-
+        
         const query = 'SELECT AVG(grade) as Avg FROM reviews where book_id = ' + req.params.book_id;
         connection.query(query, (err, results, fields) => {
             if (isNaN(req.params.book_id)) {
@@ -98,20 +98,20 @@ module.exports = function (app) {
             } else if (err) {
                 console.error(err);
                 res.json({
-
+                    
                     message: 'Error occured'
                 });
             } else {
                 res.json({
-                     results
+                    results
                 });
             }
         });
     });
-
+    
     // get all reviews by book_ID
     app.get('/get-reviews/:book_id', (req, res) => {
-
+        
         const query = 'SELECT * FROM reviews where book_id = ' + req.params.book_id;
         connection.query(query, (err, results, fields) => {
             if (isNaN(req.params.book_id)) {
@@ -123,46 +123,95 @@ module.exports = function (app) {
             } else if (err) {
                 console.error(err);
                 res.json({
-
+                    
                     message: 'Error occured'
                 });
             } else {
                 res.json({
-                     results
+                    results
                 });
             }
         });
     });
 
-        // get all suggestions by book_ID
-        app.get('/get-suggestions/:book_id', (req, res) => {
-
-            const query = 'SELECT * FROM suggestions where book_id1 = ' + req.params.book_id ;
-            connection.query(query, (err, results, fields) => {
-                if (isNaN(req.params.book_id)) {
-                    res.status(400).json({ message: "id is not valid" });
-                } else if (Object.keys(results).length == 0) {
-                    res.json({
-                        results: []
-                    });
-                } else if (err) {
-                    console.error(err);
-                    res.json({
-    
-                        message: 'Error occured'
-                    });
-                } else {
-                    res.json({
-                         results
-                    });
-                }
-            });
+     // get all reviews by user
+     app.get('/get-reviewsUser/:user_id', (req, res) => {       
+        const query = 'SELECT * FROM reviews where user_id = ' + req.params.user_id;
+        connection.query(query, (err, results, fields) => {
+            if (isNaN(req.params.book_id)) {
+                res.status(400).json({ message: "id is not valid" });
+            } else if (Object.keys(results).length == 0) {
+                res.json({
+                    results: []
+                });
+            } else if (err) {
+                console.error(err);
+                res.json({
+                    
+                    message: 'Error occured'
+                });
+            } else {
+                res.json({
+                    results
+                });
+            }
         });
+    });   
+    // get all suggestions by book_ID
+    app.get('/get-suggestions/:book_id', (req, res) => {
+        
+        const query = 'SELECT * FROM suggestions where book_id1 = ' + req.params.book_id ;
+        connection.query(query, (err, results, fields) => {
+            if (isNaN(req.params.book_id)) {
+                res.status(400).json({ message: "id is not valid" });
+            } else if (Object.keys(results).length == 0) {
+                res.json({
+                    results: []
+                });
+            } else if (err) {
+                console.error(err);
+                res.json({
+                    
+                    message: 'Error occured'
+                });
+            } else {
+                res.json({
+                    results
+                });
+            }
+        });
+    });
+
+    // get all suggestions by user
+    app.get('/get-suggestionsUser/:user_id', (req, res) => {
+        
+        const query = 'SELECT * FROM suggestions where user_id = ' + req.params.user_id ;
+        connection.query(query, (err, results, fields) => {
+            if (isNaN(req.params.book_id)) {
+                res.status(400).json({ message: "id is not valid" });
+            } else if (Object.keys(results).length == 0) {
+                res.json({
+                    results: []
+                });
+            } else if (err) {
+                console.error(err);
+                res.json({
+                    
+                    message: 'Error occured'
+                });
+            } else {
+                res.json({
+                    results
+                });
+            }
+        });
+    });
+
     // insert a review 
     app.post('/reviews', (req, res) => {
         const review = req.body;
         const query = 'INSERT INTO reviews(book_id,user_id,review,grade) values(?, ?, ?, ?)';
-
+        
         connection.query(query, [review.book_id, review.user_id, review.review, review.grade], (err, results, fields) => {
             if (err) {
                 console.error("errno=" + err.errno);
@@ -182,12 +231,12 @@ module.exports = function (app) {
             }
         });
     });
-
+    
     // insert a suggestion 
     app.post('/suggestions', (req, res) => {
         const suggestion = req.body;
-        const query = 'INSERT INTO suggestions(book_id1,book_id2,reason) values(?, ?, ?),(?, ?, ?)';
-        connection.query(query, [suggestion.book_id1, suggestion.book_id2, suggestion.reason,suggestion.book_id2, suggestion.book_id1, suggestion.reason], (err, results, fields) => {
+        const query = 'INSERT INTO suggestions(user_id,book_id1,book_id2,reason) values(?, ?, ?, ?),(?, ?, ?, ?)';
+        connection.query(query, [suggestion.user_id, suggestion.book_id1, suggestion.book_id2, suggestion.reason, suggestion.user_id, suggestion.book_id2, suggestion.book_id1, suggestion.reason], (err, results, fields) => {
             if (err) {
                 console.error("errno=" + err.errno);
                 if (err.errno == 1366) { //BAD REQUEST
@@ -206,12 +255,12 @@ module.exports = function (app) {
             }
         });
     });
-
+    
     // update completely a review 
     app.put('/reviews/:review_id', (req, res) => {
         const review = req.body;
         const queryupdate = 'update reviews set book_id = ? ,user_id = ?,review = ?,grade= ? where review_id ='+req.params.review_id;
-
+        
         connection.query(queryupdate, [review.book_id, review.user_id, review.review, review.grade], (err, results, fields) => {
             if (results != undefined && results.affectedRows == 0) {
                 res.status(404).json({ message: "Review with id = " + req.params.review_id + " doesn't exists" });
@@ -233,15 +282,15 @@ module.exports = function (app) {
             }
         });
     });
-
+    
     // update completely a suggestion 
     app.put('/suggestions/:suggestion_id', (req, res) => {
         const suggestion = req.body;
-        const queryupdate1 = 'update suggestions set book_id1 = ? ,book_id2 = ? ,reason = ? where suggestion_id ='+req.params.suggestion_id;
+        const queryupdate1 = 'update suggestions set user_id = ? ,book_id1 = ? ,book_id2 = ? ,reason = ? where suggestion_id ='+req.params.suggestion_id;
         //const queryupdate2 = 'update suggestions set book_id2 = ? ,book_id1 = ? ,reason = ? where suggestion_id ='+req.params.suggestion_id;
         //PENSAR EN UPDATE SUGGESTION DOBLE
-
-        connection.query(queryupdate1, [suggestion.book_id1, suggestion.book_id2,suggestion.reason], (err, results, fields) => {
+        
+        connection.query(queryupdate1, [suggestion.user_id, suggestion.book_id1, suggestion.book_id2,suggestion.reason], (err, results, fields) => {
             if (results != undefined && results.affectedRows == 0) {
                 res.status(404).json({ message: "Suggestion with id = " + req.params.suggestion_id + " doesn't exists" });
             } else if (err) {
@@ -262,12 +311,12 @@ module.exports = function (app) {
             }
         });
     });
-
+    
     // delete a review 
     app.delete('/reviews/:review_id', (req, res) => {
         const body = req.body;
         const query = 'delete from reviews where review_id ='+req.params.review_id;
-
+        
         connection.query(query,[], (err, results, fields) => {
             if (isNaN(req.params.review_id)) {
                 res.status(400).json({ message: "id is not valid" });
@@ -285,12 +334,12 @@ module.exports = function (app) {
             }
         });
     });
-
+    
     // delete a suggestion 
     app.delete('/suggestions/:suggestion_id', (req, res) => {
         const body = req.body;
         const query = 'delete from suggestions where suggestion_id ='+req.params.suggestion_id;
-
+        
         connection.query(query, [], (err, results, fields) => {
             if (isNaN(req.params.suggestion_id)) {
                 res.status(400).json({ message: "id is not valid" });
@@ -299,7 +348,7 @@ module.exports = function (app) {
             } else if (err) {
                 console.error(err);
                 res.json({
-
+                    
                     message: 'Error occured'
                 });
             } else {

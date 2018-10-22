@@ -300,6 +300,34 @@ paths:
           schema:
             $ref: '#/definitions/ErrorModel'
 
+  /get-reviewsUser/{code}:  
+    get:
+      summary: Returns all the reviews of the user with the given code
+      operationId: getUserReviews
+      parameters:
+        - name: code
+          in: path
+          description: The code of the user to be used
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/getAllReviews'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
   /get-suggestions/{code}:  
     get:
       summary: Returns all the suggestions of the book with the given code
@@ -328,6 +356,35 @@ paths:
           schema:
             $ref: '#/definitions/ErrorModel'
 
+  /get-suggestionsUser/{code}:  
+    get:
+      summary: Returns all the suggestions of the user with the given code
+      operationId: getUserSuggestions
+      parameters:
+        - name: code
+          in: path
+          description: The code of the user to be used
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/getAllSuggestions'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+
 definitions:
 
   Review:
@@ -353,6 +410,8 @@ definitions:
     type: object
     properties:
       sugggestion_id:
+        type: integer
+      user_id:
         type: integer
       book_id1:
         type: integer
@@ -410,6 +469,8 @@ definitions:
   addSuggestion:
     type: object
     properties:
+      user_id:
+        type: integer
       book_id1:
         type: integer
       book_id2:
@@ -434,6 +495,8 @@ definitions:
   updateSuggestion:
     type: object
     properties:
+      user_id:
+        type: integer
       book_id1:
         type: integer
       book_id2:
