@@ -182,7 +182,7 @@ module.exports = function (app) {
         });
     });
 
-    // get all suggestions by user
+    // get all suggestions by userid
     app.get('/get-suggestionsUser/:user_id', (req, res) => {
         
         const query = 'SELECT * FROM suggestions where user_id = ' + req.params.user_id ;
@@ -210,9 +210,9 @@ module.exports = function (app) {
     // insert a review 
     app.post('/reviews', (req, res) => {
         const review = req.body;
-        const query = 'INSERT INTO reviews(book_id,user_id,review,grade) values(?, ?, ?, ?)';
+        const query = 'INSERT INTO reviews(book_id,user_id,username,review,grade) values(?, ?, ?, ?, ?)';
         
-        connection.query(query, [review.book_id, review.user_id, review.review, review.grade], (err, results, fields) => {
+        connection.query(query, [review.book_id, review.user_id, review.username, review.review, review.grade], (err, results, fields) => {
             if (err) {
                 console.error("errno=" + err.errno);
                 if (err.errno == 1366) { //BAD REQUEST
@@ -235,8 +235,8 @@ module.exports = function (app) {
     // insert a suggestion 
     app.post('/suggestions', (req, res) => {
         const suggestion = req.body;
-        const query = 'INSERT INTO suggestions(user_id,book_id1,book_id2,reason) values(?, ?, ?, ?),(?, ?, ?, ?)';
-        connection.query(query, [suggestion.user_id, suggestion.book_id1, suggestion.book_id2, suggestion.reason, suggestion.user_id, suggestion.book_id2, suggestion.book_id1, suggestion.reason], (err, results, fields) => {
+        const query = 'INSERT INTO suggestions(user_id,username,book_id1,booktitle1,book_id2,booktitle2,reason) values(?, ?, ?, ?, ?),(?, ?, ?, ?, ?)';
+        connection.query(query, [suggestion.user_id, suggestion.username, suggestion.book_id1, suggestion.booktitle1, suggestion.book_id2, suggestion.booktitle2, suggestion.reason, suggestion.user_id, suggestion.username, suggestion.book_id1, suggestion.booktitle1, suggestion.book_id2, suggestion.booktitle2, suggestion.reason], (err, results, fields) => {
             if (err) {
                 console.error("errno=" + err.errno);
                 if (err.errno == 1366) { //BAD REQUEST
@@ -259,9 +259,9 @@ module.exports = function (app) {
     // update completely a review 
     app.put('/reviews/:review_id', (req, res) => {
         const review = req.body;
-        const queryupdate = 'update reviews set book_id = ? ,user_id = ?,review = ?,grade= ? where review_id ='+req.params.review_id;
+        const queryupdate = 'update reviews set book_id = ? ,user_id = ?, username = ? ,review = ? ,grade= ? where review_id ='+req.params.review_id;
         
-        connection.query(queryupdate, [review.book_id, review.user_id, review.review, review.grade], (err, results, fields) => {
+        connection.query(queryupdate, [review.book_id, review.user_id, review.username, review.review, review.grade], (err, results, fields) => {
             if (results != undefined && results.affectedRows == 0) {
                 res.status(404).json({ message: "Review with id = " + req.params.review_id + " doesn't exists" });
             } else if (err) {
@@ -286,11 +286,11 @@ module.exports = function (app) {
     // update completely a suggestion 
     app.put('/suggestions/:suggestion_id', (req, res) => {
         const suggestion = req.body;
-        const queryupdate1 = 'update suggestions set user_id = ? ,book_id1 = ? ,book_id2 = ? ,reason = ? where suggestion_id ='+req.params.suggestion_id;
+        const queryupdate1 = 'update suggestions set user_id = ? , username = ?,book_id1 = ? ,booktitle1 = ?, book_id2 = ? ,booktitle2 = ?, reason = ? where suggestion_id ='+req.params.suggestion_id;
         //const queryupdate2 = 'update suggestions set book_id2 = ? ,book_id1 = ? ,reason = ? where suggestion_id ='+req.params.suggestion_id;
         //PENSAR EN UPDATE SUGGESTION DOBLE
         
-        connection.query(queryupdate1, [suggestion.user_id, suggestion.book_id1, suggestion.book_id2,suggestion.reason], (err, results, fields) => {
+        connection.query(queryupdate1, [suggestion.user_id, suggestion.username, suggestion.book_id1, suggestion.booktitle1, suggestion.book_id2, suggestion.booktitle2, suggestion.reason], (err, results, fields) => {
             if (results != undefined && results.affectedRows == 0) {
                 res.status(404).json({ message: "Suggestion with id = " + req.params.suggestion_id + " doesn't exists" });
             } else if (err) {

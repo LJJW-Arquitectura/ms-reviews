@@ -396,6 +396,8 @@ definitions:
         type: integer
       user_id:
         type: integer
+      username:
+        type: string
       creationdate:
         type: string
         format: date-time 
@@ -413,10 +415,16 @@ definitions:
         type: integer
       user_id:
         type: integer
+      username:
+        type: string
       book_id1:
         type: integer
+      booktitle1:
+        type: string
       book_id2:
         type: integer
+      booktitle2:
+        type: string
       reason:
         type: string
         
@@ -459,6 +467,8 @@ definitions:
         type: integer
       user_id:
         type: integer
+      username:
+        type: string
       review:
         type: string
       grade:
@@ -471,10 +481,16 @@ definitions:
     properties:
       user_id:
         type: integer
+      username:
+        type: string
       book_id1:
         type: integer
+      booktitle1:
+        type: string
       book_id2:
         type: integer
+      booktitle2:
+        type: string
       reason:
         type: string
 
@@ -485,6 +501,8 @@ definitions:
         type: integer
       user_id:
         type: integer
+      username:
+        type: string
       review:
         type: string
       grade:
@@ -497,10 +515,16 @@ definitions:
     properties:
       user_id:
         type: integer
+      username:
+        type: string
       book_id1:
         type: integer
+      booktitle1:
+        type: string
       book_id2:
         type: integer
+      booktitle2:
+        type: string
       reason:
         type: string
 
