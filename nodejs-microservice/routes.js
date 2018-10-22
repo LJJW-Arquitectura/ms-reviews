@@ -210,9 +210,9 @@ module.exports = function (app) {
     // insert a review 
     app.post('/reviews', (req, res) => {
         const review = req.body;
-        const query = 'INSERT INTO reviews(book_id,user_id,username,review,grade) values(?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO reviews(book_id,booktitle,user_id,username,review,grade) values(?, ?, ?, ?, ?, ?)';
         
-        connection.query(query, [review.book_id, review.user_id, review.username, review.review, review.grade], (err, results, fields) => {
+        connection.query(query, [review.book_id, review.booktitle, review.user_id, review.username, review.review, review.grade], (err, results, fields) => {
             if (err) {
                 console.error("errno=" + err.errno);
                 if (err.errno == 1366) { //BAD REQUEST
@@ -259,9 +259,9 @@ module.exports = function (app) {
     // update completely a review 
     app.put('/reviews/:review_id', (req, res) => {
         const review = req.body;
-        const queryupdate = 'update reviews set book_id = ? ,user_id = ?, username = ? ,review = ? ,grade= ? where review_id ='+req.params.review_id;
+        const queryupdate = 'update reviews set book_id = ? , booktitle = ?, user_id = ?, username = ? ,review = ? ,grade= ? where review_id ='+req.params.review_id;
         
-        connection.query(queryupdate, [review.book_id, review.user_id, review.username, review.review, review.grade], (err, results, fields) => {
+        connection.query(queryupdate, [review.book_id, review.booktitle, review.user_id, review.username, review.review, review.grade], (err, results, fields) => {
             if (results != undefined && results.affectedRows == 0) {
                 res.status(404).json({ message: "Review with id = " + req.params.review_id + " doesn't exists" });
             } else if (err) {

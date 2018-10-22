@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE `reviews` (
   `review_id` INT NOT NULL AUTO_INCREMENT,
   `book_id` INT NOT NULL,
+  `booktitle` VARCHAR(200) NOT NULL,
   `user_id` INT NOT NULL,
   `username` VARCHAR(200) NOT NULL,
   `creationdate` DATETIME DEFAULT CURRENT_TIMESTAMP,

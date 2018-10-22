@@ -41,7 +41,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"book_id\": 3,\n\"user_id\": 2,\n\"username\": \"carlos2\",\n\"review\": \"BEST LIBRO EVA\",\n\"grade\": 5\n}"
+					"raw": "{\n\"book_id\": 3,\n\"booktitle\": \"libro3\",\n\"user_id\": 2,\n\"username\": \"carlos2\",\n\"review\": \"BEST LIBRO EVA\",\n\"grade\": 5\n}"
 				},
 				"url": {
 					"raw": "{{url}}:3003/reviews",
@@ -91,7 +91,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"book_id\": 3,\n\"user_id\": 23,\n\"username\": \"carlos\",\n\"review\": \"Libro asd\",\n\"grade\": 3\n}\n"
+					"raw": "{\n\"book_id\": 2,\n\"booktitle\": \"libro2\",\n\"user_id\": 23,\n\"username\": \"carlos\",\n\"review\": \"Libro asd\",\n\"grade\": 3\n}\n"
 				},
 				"url": {
 					"raw": "{{url}}:3003/reviews/1",

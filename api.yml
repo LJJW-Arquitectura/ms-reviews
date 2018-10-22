@@ -392,6 +392,8 @@ definitions:
     properties:
       review_id:
         type: integer
+      booktitle:
+        type: string
       book_id:
         type: integer
       user_id:
@@ -465,6 +467,8 @@ definitions:
     properties:
       book_id:
         type: integer
+      booktitle:
+        type: string
       user_id:
         type: integer
       username:
@@ -499,6 +503,8 @@ definitions:
     properties:
       book_id:
         type: integer
+      booktitle:
+        type: string
       user_id:
         type: integer
       username:
