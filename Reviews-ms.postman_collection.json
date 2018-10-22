@@ -41,7 +41,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"book_id\": 1,\n\"user_id\": 20,\n\"review\": \"BEST LIBRO EVA\",\n\"grade\": 5\n}"
+					"raw": "{\n\"book_id\": 3,\n\"user_id\": 20,\n\"review\": \"BEST LIBRO EVA\",\n\"grade\": 5\n}"
 				},
 				"url": {
 					"raw": "{{url}}:3003/reviews",
@@ -169,7 +169,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"book_id1\": 3,\n\t\"book_id2\": 23,\n\t\"reason\": \"Ambos son de terror\"\n}"
+					"raw": "{\n\t\"user_id\": 1,\n\t\"book_id1\": 5,\n\t\"book_id2\": 23,\n\t\"reason\": \"Ambos son de terror\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}:3003/suggestions",
@@ -219,7 +219,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"book_id1\": 2,\n\t\"book_id2\": 12,\n\t\"reason\": \"Ambos son de sci-fi\"\n}"
+					"raw": "{\t\n\t\"user_id\": 1,\n\t\"book_id1\": 2,\n\t\"book_id2\": 12,\n\t\"reason\": \"Ambos son de sci-fi\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}:3003/suggestions/3",
@@ -296,13 +296,36 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}:3003/get-reviews/1",
+					"raw": "{{url}}:3003/get-reviews/15",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
 						"get-reviews",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all reviews for a User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:3003/get-reviewsUser/1",
+					"host": [
+						"{{url}}"
+					],
+					"port": "3003",
+					"path": [
+						"get-reviewsUser",
 						"1"
 					]
 				}
@@ -319,13 +342,36 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}:3003/get-suggestions/1",
+					"raw": "{{url}}:3003/get-suggestions/5",
 					"host": [
 						"{{url}}"
 					],
 					"port": "3003",
 					"path": [
 						"get-suggestions",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all suggestions for a User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:3003/get-suggestionsUser/1",
+					"host": [
+						"{{url}}"
+					],
+					"port": "3003",
+					"path": [
+						"get-suggestionsUser",
 						"1"
 					]
 				}
