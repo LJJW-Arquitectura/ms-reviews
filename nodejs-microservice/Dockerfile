@@ -23,3 +23,4 @@ CMD ["npm", "start"]
 #SABER EN QUE PUERTO CORRE LA DB
 #sudo docker inspect reviewsms_reviews-db_1 | grep IPAddress
 
+EXPOSE 3003
